@@ -4,10 +4,15 @@ metadata:
   name: "webapp-alb-ingress"
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/subnets: 'subnet-2e917d01, subnet-eb02a5d4'
+    alb.ingress.kubernetes.io/subnets: 'subnet-0b8f3872,subnet-a77dabec,subnet-47ae391d'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-west-2:656337455073:certificate/1f3f0701-f0fb-48eb-a665-6079020a7c3d
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80,"HTTPS": 443}]'
   labels:
     app: webapp-service
 spec:
+#  tls:
+#  - hosts:
+#    - test.thingspro.xyz
   rules:
   - http:
       paths:
@@ -15,3 +20,4 @@ spec:
         backend:
           serviceName: "webapp-service"
           servicePort: 80
+#  - host: test.thingspro.xyz
